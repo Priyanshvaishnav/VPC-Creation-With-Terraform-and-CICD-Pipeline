@@ -1,0 +1,48 @@
+name: CI CD Pipeline FOr Deploying resources using terraform
+run-name: ${{ github.actor }} . This GitHub actor has Triggered the workflow
+
+on: 
+    push:
+        branches:
+        - 'main'
+
+env: 
+    AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+
+jobs: 
+    build-infra:
+        name: Build CI CD Infrastructure
+        runs-on: ubuntu - latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v2
+
+            - name: Terraform Init
+              id: init
+              run: terraform init
+              working-directory: ./Terrafrom
+
+            - name: Terraform Validate
+              id: validate
+              run: terraform validate
+              working-directory: ./Terrafrom
+
+    
+
+            - name: Terraform Plan
+              id: plan
+              run: terraform plan
+              working-directory: ./Terrafrom
+
+             
+
+            - name: Terraform Apply
+              id: apply
+              run: terraform apply --auto-approve
+              working-directory: ./Terrafrom
+
