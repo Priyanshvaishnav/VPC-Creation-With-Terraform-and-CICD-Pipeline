@@ -1,2 +1,2 @@
-# VPC-Creation-With-Terraform-and-CICD-Pipeline
-We are going to create a VPC with Terraform but this time we use CI CD pipeline for GitHub Actions.
+# VPC-Creation-with-Terrafrom
+We are going to create a VPC using Terraform as Infrastructure as Code (IAAC) and Github actions as CI/CD
